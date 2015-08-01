@@ -19,7 +19,9 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, todosFactory) {
       }).then(function(data) {
         $scope.todos.push(data.data);
       });
-      $scope.todoInput = '';
+      $scope.nameInput = '';
+      $scope.timeInput = '';
+      $scope.commentInput = '';
   };
 
   //update the status of the Todo
