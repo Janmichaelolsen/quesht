@@ -1,28 +1,40 @@
-<div class="container" ng-controller="TodoCtrl">
-    <div class="row col-md-12">
-        <div>
-            <input type="text" class="form-control input-lg" placeholder="Enter a Todo" ng-keypress="save($event)" ng-model="todoInput">
+<div ng-controller="TodoCtrl">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="inputForm">
+            <input type="text" class="input-lg" placeholder="Ditt navn" ng-model="nameInput"><br>
+            <input type="text" class="input-lg" placeholder="Når kan du spille?" ng-model="timeInput"><br>
+            <input type="text" class="input-lg" placeholder="Kommentar" ng-model="commentInput"><br>
+            <input type="button" class="btn btn-success" value="Lagre" ng-click="save();" />
         </div>
     </div>
-    <div class="row col-md-12 todos">
+    <div class="col-lg-12 todos">
+      <hr/>
         <div class="alert alert-info text-center" ng-hide="todos.length > 0">
-            <h3>No Todos yet!</h3>
+            <p>Ingen kan spille akkurat nå</p>
         </div>
-        <div ng-repeat="todo in todos" class="todo col-md-12 col-sm-12 col-xs-12" ng-class="todo.isCompleted ? 'strike' : ''">
-            <div class="col-md-1 col-sm-1 col-xs-1">
-                <input type="checkbox" ng-checked="todo.isCompleted" ng-click="updateStatus($event, todo._id, $index)">
-            </div>
-            <div class="col-md-8 col-sm-8 col-xs-8">
-                <span ng-show="!isEditable[$index]">{{todo.todo}}</span>
-                <input ng-show="isEditable[$index]" type="text" value="{{todo.todo}}" ng-keypress="edit($event,$index);">
-                <input ng-show="isEditable[$index]" type="button" class="btn btn-warning" value="Cancel" ng-click="isEditable[$index] = false" />
-            </div>
-            <div class="col-md-3 col-sm-3 col-xs-3">
-                <input type="button" class="btn btn-info" ng-disabled="todo.isCompleted" class="pull-right" value="Edit" ng-click="isEditable[$index] = true" />
-                <input type="button" class="btn btn-danger" class="pull-right" value="Delete" ng-click="delete($index)" />
-            </div>
-
-        </div>
+        <table class="todo col-md-12" ng-show="todos.length > 0">
+            <tr>
+              <th>Navn</th>
+              <th>Når?</th>
+              <th>Kommentar</th>
+              <th>Slett</th>
+            </tr>
+              <tr ng-repeat="todo in todos">
+                <td>
+                    <span>{{todo.name}}</span>
+                </td>
+                <td>
+                    <span>{{todo.time}}</span>
+                </td>
+                <td>
+                    <span>{{todo.comment}}</span>
+                </td>
+                <td>
+                    <input type="button" class="btn btn-danger" ng-click="delete($index)" value="X"></input
+                </td>
+              </tr>
+            </tr>
+        </table>
     </div>
   </div>
 </div>

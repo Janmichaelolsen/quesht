@@ -6,20 +6,20 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, todosFactory) {
   // get all Todos on Load
   todosFactory.getTodos().then(function(data) {
     $scope.todos = data.data;
+    console.log($scope.todos);
   });
 
   // Save a Todo to the server
-  $scope.save = function($event) {
-    if ($event.which == 13 && $scope.todoInput) {
-
+  $scope.save = function() {
+    console.log($scope.nameInput);
       todosFactory.saveTodo({
-        "todo": $scope.todoInput,
-        "isCompleted": false
+        "name": $scope.nameInput,
+        "time": $scope.timeInput,
+        "comment": $scope.commentInput
       }).then(function(data) {
         $scope.todos.push(data.data);
       });
       $scope.todoInput = '';
-    }
   };
 
   //update the status of the Todo

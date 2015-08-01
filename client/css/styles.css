@@ -2,7 +2,7 @@
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
-    font-family: calibri;
+    font-family: 'Raleway', sans-serif!important;
 }
 .strike span {
     text-decoration: line-through;
@@ -20,8 +20,8 @@
     margin-left: 5px;
     width: 72px;
 }
-.todo:hover {
-    background: #e7e7e7;
+.inputForm {
+  text-align:center;
 }
 @media (max-width: 991px) {
     .todo .btn {
