@@ -17,6 +17,12 @@
     });
   });
 
+  router.post('/api/questions', function(req, res) {
+    db.questions.insert(req.body, function(err, data) {
+      res.json(data);
+    });
+  });
+
   router.post('/api/todos', function(req, res) {
     db.todos.insert(req.body, function(err, data) {
       res.json(data);

@@ -13,12 +13,7 @@
 }
 .todo {
     padding: 10px;
-    font-size: 21px;
-    border-bottom: 1px solid;
-}
-.todo .btn {
-    margin-left: 5px;
-    width: 72px;
+    font-size: 17px;
 }
 .inputForm {
   text-align:center;

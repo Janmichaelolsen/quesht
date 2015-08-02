@@ -1,5 +1,6 @@
 todoApp.factory('todosFactory', function($http) {
   var urlBase = '/api/todos';
+  var questBase = '/api/questions';
   var _todoService = {};
 
   _todoService.getTodos = function() {
@@ -8,6 +9,10 @@ todoApp.factory('todosFactory', function($http) {
 
   _todoService.saveTodo = function(todo) {
     return $http.post(urlBase, todo);
+  };
+
+  _todoService.saveQuestion = function(question) {
+    return $http.post(questBase, question);
   };
 
   _todoService.updateTodo = function(todo) {

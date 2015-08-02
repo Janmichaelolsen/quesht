@@ -1,21 +1,20 @@
-todoApp.controller('TodoCtrl', function($rootScope, $scope, todosFactory) {
+todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, todosFactory) {
 
   $scope.todos = [];
   $scope.isEditable = [];
-
+  $scope.title = $routeParams.quest_id;
   // get all Todos on Load
+  $scope.loading = true;
   todosFactory.getTodos().then(function(data) {
     $scope.todos = data.data;
-    console.log($scope.todos);
+    $scope.loading = false;
   });
 
   // Save a Todo to the server
   $scope.save = function() {
-    console.log($scope.nameInput);
       todosFactory.saveTodo({
         "name": $scope.nameInput,
-        "time": $scope.timeInput,
-        "comment": $scope.commentInput
+        "time": $scope.timeInput
       }).then(function(data) {
         $scope.todos.push(data.data);
       });
@@ -69,5 +68,20 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, todosFactory) {
       }
     });
   };
+
+});
+
+todoApp.controller('RegCtrl', function($rootScope, $scope, $location, todosFactory) {
+
+  $scope.create = function() {
+      $location.path('/q/'+$scope.questionNameInput);
+      /*todosFactory.saveQuestion({
+        "question": $scope.questionInput,
+        "url": $scope.questionNameInput
+      }).then(function() {
+        $location.path('/q/'+$scope.questionNameInput);
+      });*/
+  };
+
 
 });
