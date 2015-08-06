@@ -4,12 +4,17 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, $locat
   $scope.isEditable = [];
   // get all Todos on Load
   $scope.loading = true;
+  $scope.questionUrl = $location.absUrl();
   todosFactory.getQuestion({q_id: $routeParams.quest_id}).then(function(data) {
     if(data){
       $scope.data = data.data;
       $scope.question = data.data.question.question;
       $scope.answers = data.data.answers;
       $scope.loading = false;
+      if(!$scope.answers){
+        console.log("hey");
+        $('#shareModal').openModal();
+      }
     }else {
       Materialize.toast('Question not found!', 4000);
       $location.path('/');
@@ -67,9 +72,9 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, $locat
 
   // Delete a Todo
   $scope.delete = function(i) {
-    todosFactory.deleteTodo($scope.todos[i]._id).then(function(data) {
+    todosFactory.deleteAnswer($scope.answers[i]._id).then(function(data) {
       if (data.data) {
-        $scope.todos.splice(i, 1);
+        $scope.answers.splice(i, 1);
       }
     });
   };
@@ -77,18 +82,28 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, $locat
 });
 
 todoApp.controller('RegCtrl', function($rootScope, $scope, $location, todosFactory, $interval) {
-  $scope.exampleQuestions = ["Who buys what?", "When will you arrive?", "When are you available?"];
+  $scope.exampleQuestions = ["Who buys what?", "When will you arrive?", "When are you available?", "What do you want for christmas?"];
   var tabIndex = 0;
   $scope.loading = true;
-  $scope.hint = $scope.exampleQuestions[tabIndex];
   $scope.newQuestion = function(){
+    $scope.hint = "";
     if(tabIndex == $scope.exampleQuestions.length-1){      
       tabIndex = 0;
     }else {
       tabIndex++;
     }
-    $scope.hint = $scope.exampleQuestions[tabIndex];
+    var res = $scope.exampleQuestions[tabIndex].split("");
+    var i=0;
+    $scope.appendWord = function(){
+      if(i<res.length){
+        $scope.hint += res[i];
+      }
+      i++;
+    };
+    $interval($scope.appendWord, 30);
+      
   };
+  $scope.newQuestion();
   $interval($scope.newQuestion, 3000);
   
 

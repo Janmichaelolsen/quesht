@@ -1,6 +1,5 @@
 todoApp.factory('todosFactory', function($http) {
   var answerUrl = '/api/answers';
-  var urlBase = '/api/answers';
   var questBase = '/api/questions';
   var questGetBase = '/api/questionGet';
   var _queshtService = {};
@@ -24,8 +23,8 @@ todoApp.factory('todosFactory', function($http) {
     return $http.put(urlBase, todo);
   };
 
-  _queshtService.deleteTodo = function(id) {
-    return $http.delete(urlBase + '/' + id);
+  _queshtService.deleteAnswer = function(id) {
+    return $http.delete(answerUrl + '/' + id);
   };
 
   return _queshtService;

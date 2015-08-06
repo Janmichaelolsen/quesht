@@ -64,8 +64,8 @@
 
   });
 
-  router.delete('/api/todos/:_id', function(req, res) {
-    db.todos.remove({
+  router.delete('/api/answers/:_id', function(req, res) {
+    db.answers.remove({
       _id: mongojs.ObjectId(req.params._id)
     }, '', function(err, data) {
       res.json(data);
