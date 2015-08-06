@@ -2,7 +2,7 @@
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
-    font-family: 'Raleway', sans-serif!important;
+    font-family: 'Open Sans', sans-serif;
 }
 .strike span {
     text-decoration: line-through;
