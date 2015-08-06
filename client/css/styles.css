@@ -1,8 +1,20 @@
+@font-face {
+    font-family: lightFontTitle;
+    src: url("AdventPro-Light.ttf");
+}
+@font-face {
+    font-family: lightFontRegular;
+    src: url("AdventPro-Regular.ttf");
+}
 * {
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
-    font-family: 'Open Sans', sans-serif;
+    font-family: sans-serif;
+}
+
+h3 {
+    font-family: lightFontTitle!important;
 }
 .strike span {
     text-decoration: line-through;
