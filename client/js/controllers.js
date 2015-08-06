@@ -1,8 +1,5 @@
 todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, $location, todosFactory) {
 
-  $scope.todos = [];
-  $scope.isEditable = [];
-  // get all Todos on Load
   $scope.loading = true;
   $scope.questionUrl = $location.absUrl();
   todosFactory.getQuestion({q_id: $routeParams.quest_id}).then(function(data) {
@@ -11,10 +8,6 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, $locat
       $scope.question = data.data.question.question;
       $scope.answers = data.data.answers;
       $scope.loading = false;
-      if(!$scope.answers){
-        console.log("hey");
-        $('#shareModal').openModal();
-      }
     }else {
       Materialize.toast('Question not found!', 4000);
       $location.path('/');
@@ -112,6 +105,7 @@ todoApp.controller('RegCtrl', function($rootScope, $scope, $location, todosFacto
     todosFactory.saveQuestion({
       "question": $scope.questionInput,
     }).then(function(data) {
+      console.log(data.data._id);
       $location.path("/q/"+data.data._id);
     });
   };
