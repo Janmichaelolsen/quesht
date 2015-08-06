@@ -16,7 +16,8 @@
     "express": "^4.8.5",
     "forever": "^0.11.1",
     "mongojs": "^0.14.0",
-    "morgan": "^1.2.3"
+    "morgan": "^1.2.3",
+    "shortid": "latest"
   },
   "devDependencies": {
     "gulp": "^3.8.7",

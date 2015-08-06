@@ -1,26 +1,31 @@
-todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, todosFactory) {
+todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, $location, todosFactory) {
 
   $scope.todos = [];
   $scope.isEditable = [];
-  $scope.title = $routeParams.quest_id;
   // get all Todos on Load
   $scope.loading = true;
-  todosFactory.getTodos().then(function(data) {
-    $scope.todos = data.data;
-    $scope.loading = false;
+  todosFactory.getQuestion({q_id: $routeParams.quest_id}).then(function(data) {
+    if(data){
+      $scope.data = data.data;
+      $scope.question = data.data.question.question;
+      $scope.answers = data.data.answers;
+      $scope.loading = false;
+    }else {
+      Materialize.toast('Question not found!', 4000);
+      $location.path('/');
+    }
   });
 
-  // Save a Todo to the server
   $scope.save = function() {
-      todosFactory.saveTodo({
+      todosFactory.saveAnswer({
         "name": $scope.nameInput,
-        "time": $scope.timeInput
+        "answer": $scope.answerInput,
+        "question": $scope.data.question._id
       }).then(function(data) {
-        $scope.todos.push(data.data);
+        $scope.answers.push(data.data);
       });
       $scope.nameInput = '';
-      $scope.timeInput = '';
-      $scope.commentInput = '';
+      $scope.answerInput = '';
   };
 
   //update the status of the Todo
@@ -71,17 +76,28 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, todosF
 
 });
 
-todoApp.controller('RegCtrl', function($rootScope, $scope, $location, todosFactory) {
+todoApp.controller('RegCtrl', function($rootScope, $scope, $location, todosFactory, $interval) {
+  $scope.exampleQuestions = ["Who buys what?", "When will you arrive?", "When are you available?"];
+  var tabIndex = 0;
+  $scope.loading = true;
+  $scope.hint = $scope.exampleQuestions[tabIndex];
+  $scope.newQuestion = function(){
+    if(tabIndex == $scope.exampleQuestions.length-1){      
+      tabIndex = 0;
+    }else {
+      tabIndex++;
+    }
+    $scope.hint = $scope.exampleQuestions[tabIndex];
+  };
+  $interval($scope.newQuestion, 3000);
+  
 
   $scope.create = function() {
-      $location.path('/q/'+$scope.questionNameInput);
-      /*todosFactory.saveQuestion({
-        "question": $scope.questionInput,
-        "url": $scope.questionNameInput
-      }).then(function() {
-        $location.path('/q/'+$scope.questionNameInput);
-      });*/
+    $scope.loading = true;
+    todosFactory.saveQuestion({
+      "question": $scope.questionInput,
+    }).then(function(data) {
+      $location.path("/q/"+data.data._id);
+    });
   };
-
-
 });

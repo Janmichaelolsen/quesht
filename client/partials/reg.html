@@ -2,9 +2,8 @@
   <h3 style="text-align:center">Ask a question</h3>
   <div class="col-md-6 col-md-offset-3">
       <div class="inputForm card" style="padding:20px;">
-          <input type="text" id="question" placeholder="Ask a question" ng-model="questionInput">
-          <input type="text" id="questionName" placeholder="Give it a name" ng-model="questionNameInput">
-          <button class="btn waves-effect waves-light" ng-click="create();" ng-disabled='questionInput == "" || questionNameInput == "" || questionInput == null || questionNameInput == null'>Create
+          <input type="text" id="question" placeholder="{{hint}}" ng-model="questionInput">
+          <button class="btn waves-effect waves-light" ng-click="create();" ng-disabled='questionInput == "" || questionInput == null'>Ask
           </button>
       </div>
   </div>

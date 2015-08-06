@@ -1,30 +1,30 @@
 <div ng-controller="TodoCtrl">
-  <h3 style="text-align:center">{{title}}</h3>
+  <h3 style="text-align:center">{{question}}</h3>
     <div class="col-md-6 col-md-offset-3">
         <div class="inputForm card" style="padding:20px;">
             <input type="text" class="input-lg" placeholder="Your name" ng-model="nameInput"><br>
-            <input type="text" class="input-lg" placeholder="{{title}}" ng-model="timeInput"><br>
-            <button class="btn waves-effect waves-light" ng-click="save();" ng-disabled='nameInput == "" || timeInput == "" || nameInput == null || timeInput == null'>Lagre
+            <input type="text" class="input-lg" placeholder="Your answer" ng-model="answerInput"><br>
+            <button class="btn waves-effect waves-light" ng-click="save();" ng-disabled='nameInput == "" || answerInput == "" || nameInput == null || answerInput == null'>Lagre
             </button>
         </div>
     </div>
     <div class="col-lg-12" ng-hide="loading">
       <hr/>
-        <div class="alert alert-info text-center" ng-hide="todos.length > 0">
-            <p>No answers</p>
+        <div class="alert alert-info text-center" ng-hide="answers.length > 0">
+            <p>No answers yet</p>
         </div>
-        <table class="col-md-12" ng-show="todos.length > 0">
+        <table class="col-md-12" ng-show="answers.length > 0">
                <tr class="collection-item">
-                 <th class="col-md-3">Navn</th>
-                 <th class="col-md-7">Svar</th>
-                 <th class="col-md-2">Slett</th>
+                 <th class="col-md-3">Name</th>
+                 <th class="col-md-7">Answer</th>
+                 <th class="col-md-2">Delete</th>
                </tr>
-               <tr class="collection-item" ng-repeat="todo in todos">
+               <tr class="collection-item" ng-repeat="answer in answers">
                  <td class="col-md-3">
-                     <span>{{todo.name}}</span>
+                     <span>{{answer.name}}</span>
                  </td>
                  <td class="col-md-7">
-                     <span>{{todo.time}}</span>
+                     <span>{{answer.answer}}</span>
                  </td>
                  <td class="col-md-2">
                    <button class="btn" ng-click="delete($index)">x
@@ -33,7 +33,6 @@
                </tr>
            </ul>
         </table>
-
     </div>
     <div class="col-lg-12" ng-show="loading">
       <div class="progress">
