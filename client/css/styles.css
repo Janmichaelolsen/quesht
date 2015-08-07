@@ -36,4 +36,14 @@ h3 {
     text-align: left;
     font-family: lightFontTitle!important;
 }
+#topbar{
+    background:url("/img/topbar.jpg");
+    height:5px;
+}
+#questionHeader {
+    cursor:pointer;
+}
+#questionHeader:hover {
+    color:pink;
+}
 

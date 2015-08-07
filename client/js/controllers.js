@@ -1,6 +1,7 @@
 todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, $location, todosFactory) {
 
   $scope.loading = true;
+  $scope.titleEdit = false;
   $scope.questionUrl = $location.absUrl();
   todosFactory.getQuestion({q_id: $routeParams.quest_id}).then(function(data) {
     if(data){
@@ -13,6 +14,17 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, $locat
       $location.path('/');
     }
   });
+
+  $scope.editTitle = function() {
+      $scope.titleEdit = true;
+  };
+
+  $scope.saveTitle = function($event) {
+      $scope.titleEdit = false;
+      todosFactory.updateQuestion({
+        _id: $routeParams.quest_id,
+        new_q: $scope.question});
+  };
 
   $scope.save = function() {
       todosFactory.saveAnswer({

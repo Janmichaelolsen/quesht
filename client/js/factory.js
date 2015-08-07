@@ -18,6 +18,9 @@ todoApp.factory('todosFactory', function($http) {
   _queshtService.getQuestion = function(q_id) {
     return $http.post(questGetBase, q_id);
   };
+  _queshtService.updateQuestion = function(question) {
+    return $http.put(questBase, question);
+  };
 
   _queshtService.updateTodo = function(todo) {
     return $http.put(urlBase, todo);

@@ -20,7 +20,17 @@
 
   router.post('/api/questions', function(req, res) {
     db.questions.insert({_id: shortid.generate(),
-                        question: req.body.question}, function(err, data) {
+      question: req.body.question}, function(err, data) {
+      res.json(data);
+    });
+  });
+
+  router.put('/api/questions', function(req, res) {
+    db.questions.update({
+      _id: req.body._id
+    }, {
+      question: req.body.new_q
+    }, {}, function(err, data) {
       res.json(data);
     });
   });
