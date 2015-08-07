@@ -1,6 +1,6 @@
 <div ng-controller="TodoCtrl">
   <h3 style="text-align:center">{{question}}</h3>
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-4 col-sm-12 col-xs-12 col-md-offset-4">
         <div class="inputForm card" style="padding:20px;">
           <form ui-keypress="{13:'save($event)'}">
             <div class="input-field">
@@ -16,32 +16,37 @@
           </form>
         </div>
     </div>
-        <div class="col-lg-12" ng-hide="loading">
+    <hr/>
+    <br>
+        <div class="col-md-4 col-sm-12 col-xs-12 col-md-offset-4" ng-hide="loading">
           <hr/>
           <div class="card-panel" ng-hide="answers.length > 0">
             <span class="teal-text text-darken-2">No answers yet! Give your friends this link to get their answer:</span>
             <input id="name" type="text" ng-model="questionUrl">
           </div>
-          </div>
-        <table class="col-md-12 hoverable responsive-table" ng-show="answers.length > 0">
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12 col-md-offset-4" ng-show="answers.length > 0">
+          <div id="answerPanel" class="card-panel">
+            <table class="hoverable">
                <tr class="collection-item">
-                 <th class="col-md-3">Name</th>
-                 <th class="col-md-7">Answer</th>
-                 <th class="col-md-2">Delete</th>
+                 <th class="col-md-3 col-sm-3 col-xs-3">Name</th>
+                 <th class="col-md-7 col-sm-7 col-xs-7">Answer</th>
+                 <th class="col-md-2 col-sm-2 col-xs-2">Delete</th>
                </tr>
                <tr class="collection-item" ng-repeat="answer in answers">
-                 <td class="col-md-3">
+                 <td class="col-md-3 col-sm-3 col-xs-3">
                      <span>{{answer.name}}</span>
                  </td>
-                 <td class="col-md-7">
+                 <td class="col-md-7 col-sm-7 col-xs-7">
                      <span>{{answer.answer}}</span>
                  </td>
-                 <td class="col-md-2">
-                   <button class="btn btn-green waves-effect waves-light" ng-click="delete($index)">x</button>
+                 <td class="col-md-2 col-sm-2 col-xs-2">
+                   <button class="btn btn-flat btn-red waves-effect waves-light" ng-click="delete($index)">x</button>
                  </td>
                </tr>
-           </ul>
-        </table>
+             </div>
+            </table>
+          </div>
     </div>
     <div class="col-lg-12" ng-show="loading">
       <div class="progress">

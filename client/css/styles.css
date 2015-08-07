@@ -26,54 +26,15 @@ h3 {
     text-decoration: line-through;
     color: #ccc;
 }
-.todos {
-    padding: 20px;
-}
-.todo {
-    padding: 10px;
-    font-size: 17px;
-}
 .inputForm {
   text-align:center;
 }
-@media (max-width: 991px) {
-    .todo .btn {
-        margin-bottom: 10px;
-    }
-    .todo input[type=checkbox] {
-        width: 25px;
-        height: 25px;
+@media (max-width: 768px) {
+    * {
+    font-size: 20px;
     }
 }
-@media (max-width: 991px) {
-    .todo .btn-warning {
-        margin-top: 10px;
-        margin-left: 0px
-    }
+#answerPanel {
+    padding:0px!important;
 }
 
-@media (max-width: 450px) {
-    .todo .col-xs-8 {
-        width: 85%;
-    }
-    .todo .col-xs-3 {
-        width: 100%;
-        text-align: center;
-        border-top: 1px dashed #aaa;
-        padding-top: 10px;
-        margin-top: 10px;
-    }
-}
-
-@media (max-width: 450px) {
-    .todo .col-xs-8 {
-        width: 85%;
-    }
-    .todo .col-xs-3 {
-        width: 100%;
-        text-align: center;
-        border-top: 1px dashed #aaa;
-        padding-top: 10px;
-        margin-top: 10px;
-    }
-}
