@@ -29,12 +29,11 @@ h3 {
 .inputForm {
   text-align:center;
 }
-@media (max-width: 768px) {
-    * {
-    font-size: 20px;
-    }
-}
 #answerPanel {
     padding:0px!important;
+}
+#askTitle {
+    text-align: left;
+    font-family: lightFontTitle!important;
 }
 

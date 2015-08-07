@@ -1,8 +1,9 @@
 <div ng-controller="RegCtrl">
-  <h3 style="text-align:center">Ask a question</h3>
-  <div class="col-md-4 col-sm-12 col-xs-12 col-md-offset-4">
+  <h3 style="text-align:center">quesht</h3>
+  <div class="col-md-4 col-sm-12 col-md-offset-4">
       <div class="inputForm card" style="padding:20px;">
       	<form ui-keypress="{13:'create($event)'}">
+          <h5 id="askTitle">Ask a question</h5>
   			<input type="text" id="question" placeholder="{{hint}}" ng-model="questionInput">
           	<button class="btn btn-green waves-effect waves-light" ng-click="create();" ng-disabled='questionInput == "" || questionInput == null'>Ask
           	</button>

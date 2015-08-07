@@ -75,7 +75,7 @@ todoApp.controller('TodoCtrl', function($rootScope, $scope, $routeParams, $locat
 });
 
 todoApp.controller('RegCtrl', function($rootScope, $scope, $location, todosFactory, $interval) {
-  $scope.exampleQuestions = ["Who buys what?", "When will you arrive?", "When are you available?", "What do you want for christmas?"];
+  $scope.exampleQuestions = ["Who buys what for the party?", "When will you arrive?", "When are you available?", "What do you want for christmas?"];
   var tabIndex = 0;
   $scope.loading = true;
   $scope.newQuestion = function(){
